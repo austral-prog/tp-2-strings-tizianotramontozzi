@@ -1,4 +1,4 @@
-Mimport io
+import io
 import unittest.mock
 import in_string as ex1
 
