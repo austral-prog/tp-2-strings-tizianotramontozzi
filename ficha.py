@@ -25,33 +25,26 @@ def ficha():
     #   - Las 3 notas, su suma, promedio y promedio entero
     #   - Cierre decorativo usando repetición de string ("=" * 24)
 
-    nombre = input("Ingrese su nombre completo:")
-    email = input("Ingrese su email completo:")
-    nota1 = input("Ingrese nota 1:")
-    nota2 = input("Ingrese nota 2:")
-    nota3 = input("Ingrese nota 3:")
+    nombre = input()
+    email = input()
+    nota1 = input()
+    nota2 = input()
+    nota3 = input()
 
     nombre_limpio = nombre.strip().title()
+    email_limpio = email.lower()
 
-    email_minusculas = email.lower()
+    pos_espacio = nombre_limpio.find(" ")
+    nombre_parte = nombre_limpio[:pos_espacio]
+    apellido_parte = nombre_limpio[pos_espacio + 1:]
 
-    largo_nombre = len(nombre_limpio)
-
-    espacio = nombre_limpio.find(" ")
-    iniciales = nombre_limpio[0] + nombre_limpio[espacio + 1]
-
-    nombre_partes = nombre_limpio.split()
-    usuario = nombre_partes[1].lower() + "." + nombre_partes[0].lower()
-
-    tiene_arroba = "@" in email_minusculas
-
-    pos_arroba = email_minusculas.find("@")
-    dominio = email_minusculas[pos_arroba + 1:]
-
-    nombre_guion = nombre_limpio.replace(" ", "_")
-
+    iniciales = nombre_limpio[0] + nombre_limpio[pos_espacio + 1]
+    usuario = apellido_parte.lower() + "." + nombre_parte.lower()
+    email_valido = "@" in email_limpio
+    pos_arroba = email_limpio.find("@")
+    dominio = email_limpio[pos_arroba + 1:]
+    nombre_archivo = nombre_limpio.replace(" ", "_")
     cantidad_a = nombre_limpio.lower().count("a")
-
     codigo_secreto = nombre_limpio[::-1].upper()
 
     n1 = int(nota1)
@@ -62,17 +55,17 @@ def ficha():
     promedio = suma / 3
     promedio_entero = suma // 3
 
-    print("========================")
+    print("=" * 24)
     print("    FICHA DEL ALUMNO")
-    print("========================")
+    print("=" * 24)
     print(f"Nombre: {nombre_limpio}")
-    print(f"Email: {email_minusculas}")
-    print(f"Caracteres en nombre: {largo_nombre}")
+    print(f"Email: {email_limpio}")
+    print(f"Caracteres en nombre: {len(nombre_limpio)}")
     print(f"Iniciales: {iniciales}")
     print(f"Usuario: {usuario}")
-    print(f"Email valido: {tiene_arroba}")
+    print(f"Email valido: {email_valido}")
     print(f"Dominio: {dominio}")
-    print(f"Nombre para archivo: {nombre_guion}")
+    print(f"Nombre para archivo: {nombre_archivo}")
     print(f"Cantidad de a: {cantidad_a}")
     print(f"Codigo secreto: {codigo_secreto}")
     print(f"Nota 1: {n1}")
@@ -82,5 +75,3 @@ def ficha():
     print(f"Promedio: {promedio}")
     print(f"Promedio entero: {promedio_entero}")
     print("=" * 24)
-
-
